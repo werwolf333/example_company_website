@@ -11,3 +11,7 @@ class PeopleLink(View):
 
 class PeopleDelete(View):
     pass
+
+
+class PeopleAdd(View):
+    pass
