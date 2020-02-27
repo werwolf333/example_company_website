@@ -15,3 +15,7 @@ class PeopleDelete(View):
 
 class PeopleAdd(View):
     pass
+
+
+class PeopleEdit(View):
+    pass

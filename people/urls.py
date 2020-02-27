@@ -8,5 +8,5 @@ urlpatterns = [
     path('<int:id>/', views.PeopleLink.as_view(), name='People_link'),
     path('delete/<int:id>', views.PeopleDelete.as_view(), name='peopleDelete'),
     path('add', views.PeopleAdd.as_view(), name='peopleAdd'),
-
+    path('edit/<int:id>', views.PeopleEdit.as_view(), name='peopleEdit'),
 ]
