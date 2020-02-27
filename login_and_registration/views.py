@@ -60,4 +60,6 @@ class LoginFormView(FormView):
 
 
 class Logout(View):
-    pass
+    def get(self, request):
+        auth.logout(request)
+        return redirect('/login/')
