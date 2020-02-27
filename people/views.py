@@ -7,3 +7,7 @@ class PeopleList(View):
 
 class PeopleLink(View):
     pass
+
+
+class PeopleDelete(View):
+    pass
