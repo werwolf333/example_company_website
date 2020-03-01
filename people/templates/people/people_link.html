@@ -1,0 +1,50 @@
+{% extends 'people/index.html' %}
+{% block content %}
+
+{% if man.boss %}
+    <div class="panel panel-warning ">
+        <div class="panel-heading">Начальник</div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                {{ man.boss.position }}: <a href="/company/{{ man.boss_id }}">{{ man.boss.full_name }}</a>
+            </li>
+        </ul>
+    </div>
+{% endif %}
+
+<div class="panel panel-warning ">
+    <div class="panel-heading">Сотрудник</div>
+
+    <div class="panel-body">
+        {% if man.image %}
+            <img class="pull-right img-rounded Px100" src="{{ man.image.url }}">
+        {% endif %}
+
+        <p>{{ man.position }}:</p>
+        <p>{{ man.full_name }}</p>
+
+        {% if username %}
+            <a class="btn btn-default" href="/company/edit/{{ man.id }}">Редактировать</a>
+            <a class="btn btn-default" href="/company/delete/{{ man.id }}">Удалить</a>
+        {% endif %}
+    </div>
+</div>
+
+{% if man.workers.all %}
+    <div class="panel panel-warning ">
+        <div class="panel-heading">Подчинённые</div>
+
+        <ul class="list-group">
+            {% for worker in man.workers.all %}
+                <li class="list-group-item">
+                    {{ worker.position }}: <a href="/company/{{ worker.id }}">{{ worker.full_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<a class="btn btn-default" href="/company/">к списку работников</a>
+
+{% endblock %}

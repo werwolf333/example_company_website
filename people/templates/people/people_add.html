@@ -1,0 +1,62 @@
+{% extends 'people/index.html' %}
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body Tab150">
+
+                    <p>
+                        <label>Имя:</label>
+                    </p>
+                    <p>
+                        <input maxlength="20" name="name" type="text">
+                    </p>
+                    <p>
+                        <label>Фамилия:</label>
+                    </p>
+                    <p>
+                        <input maxlength="20" name="surname" type="text">
+                    </p>
+                    <p>
+                        <label>Отчество:</label>
+                    </p>
+                    <p>
+                        <input maxlength="20" name="patronymic" type="text">
+                    </p>
+                    <p>
+                        <label>Должность:</label>
+                    </p>
+                    <p>
+                        <input maxlength="20" name="position" type="text">
+                    </p>
+                    <p>
+                        <label>Начальник:</label>
+                    </p>
+                    <p>
+                        <select  name="boss" type="text">
+                            <option value="{{ null }}"></option>
+                            {% for man in mans %}
+                            <option value="{{man.id}}">{{ man }}</option>
+                            {%  endfor %}
+                        </select>
+                    </p>
+
+                    {{ args }}
+
+                    <p>
+                        <b>выберете фото:</b>
+                        <input type="file" name="image">
+                    </p>
+
+                    <button type="submit" class="btn btn-default">Save</button>
+
+                    <a href="/company/" class="Tab75">не добавлять</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'people/index.html' %}
+{% block content %}
+<div class="container">
+    <div class="panel panel-warning ">
+        <div class="panel-heading">Список работников</div>
+
+
+        <table class="table">
+            {% for man in mans %}
+                <tr>
+                    <td>{{ man.position }}:</td>
+                    <td><a href="/company/{{ man.id }}">{{ man.full_name }}</a></td>
+
+                    {% if username %}
+                        <td><a class="btn-xs btn btn-default" href="/company/edit/{{ man.id }}">Редактировать</a></td>
+                        <td><a class="btn-xs btn btn-danger" href="/company/delete/{{ man.id }}">Удалить</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+
+
+        {% if username %}
+            <div class="panel-footer">
+                <a class="btn-ms btn btn-default" href="/company/add">Добавить сотрудника</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
