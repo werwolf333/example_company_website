@@ -1,5 +1,5 @@
 from django.contrib import auth
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from people.models import People
 
@@ -23,7 +23,9 @@ class PeopleLink(View):
 
 
 class PeopleDelete(View):
-    pass
+    def get(self, request, id):
+        People.objects.filter(id=id).delete()
+        return redirect("/company/")
 
 
 class PeopleAdd(View):
