@@ -55,5 +55,24 @@ class PeopleAdd(View):
         return redirect("/company/")
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class PeopleEdit(View):
-    pass
+    def get(self, request, id):
+        args = {}
+        args['man'] = People.objects.get(id=id)
+        args['mans'] = People.objects.all()
+        args['username'] = auth.get_user(request).username
+        return render(request, "people/people_edit.html", args)
+
+
+    def post(self,request, id):
+        man = People.objects.get(id=id)
+        if request.FILES.get('image', None) != None:
+            man.image = request.FILES.get('image', None)
+        man.name = request.POST['name']
+        man.surname = request.POST['surname']
+        man.patronymic = request.POST['patronymic']
+        man.position = request.POST['position']
+        man.boss_id = request.POST['boss']
+        man.save()
+        return redirect("/company/")
