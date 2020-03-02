@@ -15,7 +15,11 @@ class PeopleList(View):
 
 
 class PeopleLink(View):
-    pass
+    def get(self, request, id):
+        args = {}
+        args['man'] = People.objects.get(id=id)
+        args['username'] = auth.get_user(request).username
+        return render(request, "people/people_link.html", args)
 
 
 class PeopleDelete(View):
