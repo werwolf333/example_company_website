@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login_and_registration.apps.LoginAndRegistrationConfig',
     'people.apps.PeopleConfig',
+    'our_calendar.apps.OurCalendarConfig',
+
 ]
 
 MIDDLEWARE = [
