@@ -12,3 +12,7 @@ class HolidayAdd(View):
 
 class HolidayEdit(View):
     pass
+
+
+class HolidayDelete(View):
+    pass
