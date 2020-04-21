@@ -1,0 +1,44 @@
+{% extends 'our_calendar/index.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <p class="form-group">
+                        <select class="form-control" name="worker" type="text">
+                            {% for man in mans %}
+                                <option value="{{man.id}}">{{man}}</option>
+                            {%  endfor %}
+                            {% if this_man != "" %}
+                                <option selected="selected" value="{{this_man.id}}">{{this_man}}</option>
+                            {% endif %}
+                        </select>
+                    </p>
+
+                    <p class="form-group">
+                        <b>Выберите дату начала отпуска:</b>
+                        <input class="form-control" type="date" name="data_start"  class="InputDataHeight" value="{{ date.data_start|date:"Y-m-d" }}">
+                    </p>
+
+                    <p class="form-group">
+                        <b>Выберите дату конца отпуска:</b>
+                        <input class="form-control" type="date" name="data_finish" value="{{ date.data_finish|date:"Y-m-d" }}">
+                    </p>
+
+                    <p class="form-group">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <a href="/calendar/" class="btn btn-default pull-right">Отмена</a>
+                    </p>
+
+                    {% for error_message in error_messages %}
+                        <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

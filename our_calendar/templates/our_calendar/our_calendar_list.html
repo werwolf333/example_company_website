@@ -1,0 +1,37 @@
+{% extends 'our_calendar/index.html' %}
+{% block content %}
+    <div class="container">
+        <div class="panel panel-warning">
+            <div class="panel-heading">График отпусков</div>
+
+
+            <table class="table">
+                {% for data in dates %}
+                    <tr>
+                        <td>{{ data.man.position }}: </td>
+                        <td>{{ data.man.full_name }}</td>
+                        <td>с {{ data.data_start }}</td>
+                        <td>до {{ data.data_finish }}</td>
+                        <td>{{ data.res.days }}</td>
+
+                        {% if username %}
+                            <td><a class="btn-xs btn btn-default" href="/calendar/edit/{{ data.id }}">Редактировать</a></td>
+                            <td><a class="btn-xs btn btn-danger" href="/calendar/delete/{{ data.id }}">Удалить</a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+            {% if username %}
+                <div class="panel-footer">
+                    <a  class="btn-ms btn btn-default" href="/calendar/add/">Добавить отпуск</a>
+
+                    {% if errors %}
+                        <div class="col-md-2 col-md-offset-5 alert alert-danger">{{ errors }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
