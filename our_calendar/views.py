@@ -5,3 +5,7 @@ from django.views.generic import View
 class Index(View):
     pass
 
+
+class HolidayAdd(View):
+    pass
+
