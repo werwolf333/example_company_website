@@ -9,3 +9,6 @@ class Index(View):
 class HolidayAdd(View):
     pass
 
+
+class HolidayEdit(View):
+    pass
