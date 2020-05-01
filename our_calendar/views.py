@@ -55,4 +55,6 @@ class HolidayEdit(View):
 
 
 class HolidayDelete(View):
-    pass
+    def get(self, request, id):
+        OurCalendar.objects.filter(id=id).delete()
+        return redirect("/calendar/")
