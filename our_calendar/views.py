@@ -35,7 +35,23 @@ class HolidayAdd(View):
 
 
 class HolidayEdit(View):
-    pass
+
+    def get(self, request, id):
+        args = {}
+        args['date'] = OurCalendar.objects.get(id=id)
+        man_id = args['date'].man_id
+        args['mans'] = People.objects.filter().exclude(id=man_id)
+        args['this_man'] = People.objects.get(id=man_id)
+        args['username'] = auth.get_user(request).username
+        return render(request, "our_calendar/our_calendar_form.html", args)
+
+    def post(self, request, id):
+        holiday = OurCalendar.objects.get(id=id)
+        holiday.man_id = request.POST['worker']
+        holiday.data_start = request.POST['data_start']
+        holiday.data_finish = request.POST['data_finish']
+        holiday.save()
+        return redirect("/calendar/")
 
 
 class HolidayDelete(View):
